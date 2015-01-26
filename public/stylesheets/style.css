@@ -1,0 +1,220 @@
+
+body{
+		margin: 0px;
+		padding: 0px;
+	}
+
+h3{
+	vertical-align: top;
+	display: block;
+	text-align: center;
+	margin: 0px;
+	border:1px solid black;
+	width: 210px;
+	margin-left: 10px;
+}
+h4{
+	margin: 1px;
+	padding: 1px;
+	margin-bottom: 0px;
+	padding-bottom: 0px;
+}
+#chat_window{
+	display: inline-block;
+	border: none;
+	width: 240px;
+	vertical-align: top;
+}
+#chat{
+	display: inline-block;
+	width: 200px;
+	height: 300px;
+	vertical-align: top;
+	margin-left: 10px;
+	word-wrap: break-word;
+	overflow:auto;
+	padding: 5px;
+}
+
+form{
+	margin: 5px;
+	padding: 5px;
+	vertical-align: bottom;
+	display: inline-block;
+}
+input{
+	display: inline-block;
+}
+#score{
+	display: inline-block;
+	width: 210px;
+	margin-left: 10px;
+	margin-bottom: 5px;
+	vertical-align: top;
+	color: white;
+	background-color: black;
+	text-align: center;
+}
+#world{
+	background-color: black;
+	width: 540px;
+	height: 640px;
+	display: inline-block;
+
+}
+.wall{
+	border: 1px solid blue;
+	display: inline-block;
+	background-color: blue;
+	width: 18px;
+	height: 18px;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+}
+.dot{
+	width: 20px;
+	height: 20px;
+	background-image: url("./images/dot.jpg");
+	background-size: 5px 5px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+
+}
+.empty{
+	border: 0px;
+	background-color: black;
+	display: inline-block;
+	width: 20px;
+	height: 20px;
+	padding: 0px;
+	margin: 0px;
+	position: absolute;
+
+}
+#pacman-right{
+	background-image: url("./images/mr-pacman-right.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+#pacman-left{
+	background-image: url("./images/mr-pacman-left.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+#pacman-up{
+	background-image: url("./images/mr-pacman-up.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+#pacman-down{
+	background-image: url("./images/mr-pacman-down.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+.ms-pacman-right{
+	background-image: url("./images/ms-pacman-right.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+.ms-pacman-left{
+	background-image: url("./images/ms-pacman-left.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+.ms-pacman-up{
+	background-image: url("./images/ms-pacman-up.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+.ms-pacman-down{
+	background-image: url("./images/ms-pacman-down.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+}
+.ghost_red{
+	background-image: url("./images/ghost_red.gif");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+	background-color: black;
+}
+.ghost_pink{
+	background-image: url("./images/ghost_pink.jpg");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+	background-color: black;
+}
+.ghost_blue{
+	background-image: url("./images/ghost_blue.jpg");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+	background-color: black;
+}
+.ghost_orange{
+	background-image: url("./images/ghost_orange.jpg");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+	background-color: black;
+}
+.ghost_scared{
+	background-image: url("./images/ghost_scared.jpg");
+	width: 20px;
+	height: 20px;
+	background-repeat: no-repeat;
+	background-position: center;
+	position: absolute;
+	background-size: 20px 20px;
+	background-color: black;
+}
+
+
+
