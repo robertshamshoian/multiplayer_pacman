@@ -22,7 +22,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // this selects our port
-var server = app.listen(6789);
+var server = app.listen(3000);
 
 // this gets the socket module 
 var sockets = require('socket.io').listen(server);

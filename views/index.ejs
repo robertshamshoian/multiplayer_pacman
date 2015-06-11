@@ -13,6 +13,10 @@ var socket = io.connect();
 var name = prompt('what is your name??');
 var my_id= '';
 var p_my_id= '';
+$('html, body').css({
+    'overflow': 'hidden',
+    'height': '100%'
+});
 socket.emit('new_user', {name: name})
 $('form').submit(function (){
     var message= $("input[name = 'message'").val();
@@ -41,6 +45,14 @@ socket.on('other_player_scores', function (data){
     $(p_other_player).replaceWith('<p id='+data.id+'>'+data.name+': '+data.score+'</p>');
 
 })
+var sound = {};
+    sound.start = new Audio('sounds/pacman_beginning.wav');
+    sound.background1 = new Audio('sounds/pacman_background.wav');
+    sound.background2 = new Audio('sounds/pacman_power.wav');
+    sound.eat = new Audio('sounds/pacman_chomp.wav');
+    sound.power = new Audio('sounds/pacman_eatghost.wav')
+    sound.die = new Audio('sounds/pacman_death.wav');
+    sound.end = new Audio('sounds/pacman_intermission.wav');
 
 var world = [
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
@@ -56,11 +68,11 @@ var world = [
 [0,1,1,1,1,1,1,0,1,1,1,1,0,0,0,1,1,1,1,0,1,1,1,1,1,1,0],
 [0,0,0,0,0,0,1,0,0,0,0,2,0,0,0,2,0,0,0,0,1,0,0,0,0,0,0],
 [2,2,2,2,2,0,1,0,2,2,2,2,2,2,2,2,2,2,2,0,1,0,2,2,2,2,2],
-[2,2,2,2,2,0,1,0,2,0,0,0,0,0,0,0,0,0,2,0,1,0,2,2,2,2,2],
-[2,2,2,2,2,0,1,0,2,0,2,2,2,2,2,2,2,0,2,0,1,0,2,2,2,2,2],
-[0,0,0,0,0,0,1,0,2,0,2,2,2,2,2,2,2,0,2,0,1,0,0,0,0,0,0],
-[2,2,2,2,2,2,1,2,2,0,2,2,2,2,2,2,2,0,2,2,1,2,2,2,2,2,2],
-[0,0,0,0,0,0,1,0,2,0,0,0,0,0,0,0,0,0,2,0,1,0,0,0,0,0,0],
+[2,2,2,2,2,0,1,0,2,0,0,0,0,2,0,0,0,0,2,0,1,0,2,2,2,2,2],
+[2,2,2,2,2,0,1,0,2,0,1,1,1,1,1,1,1,0,2,0,1,0,2,2,2,2,2],
+[0,0,0,0,0,0,1,0,2,0,1,1,1,1,1,1,1,0,2,0,1,0,0,0,0,0,0],
+[2,2,2,2,2,2,1,2,2,0,1,1,1,1,1,1,1,0,2,2,1,2,2,2,2,2,2],
+[0,0,0,0,0,0,1,0,2,0,0,0,0,2,0,0,0,0,2,0,1,0,0,0,0,0,0],
 [2,2,2,2,2,0,1,0,2,2,2,2,2,2,2,2,2,2,2,0,1,0,2,2,2,2,2],
 [2,2,2,2,2,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,2,2,2,2,2],
 [2,2,2,2,2,0,1,0,1,0,0,0,0,0,0,0,0,0,1,0,1,0,2,2,2,2,2],
@@ -76,6 +88,7 @@ var world = [
 [0,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0],
 [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 ];
+
 var direction= 'left';
 var other_players_direction='left';
 var score = 0;   
@@ -117,6 +130,7 @@ function drawWorld() {
     };
 }
 drawWorld();
+sound.start.play();
 //pacman starts at x.24 y.13
 var pacman = {
     x: 24,
@@ -133,6 +147,7 @@ $(document).keydown(function(e){
 if(world[pacman.x+1][pacman.y] == 1 || world[pacman.x+1][pacman.y] == 2 ) {
     if(world[pacman.x+1][pacman.y] == 1) {
         score+=10;
+        sound.eat.play();
         socket.emit('score', {id: my_id, name: name, score:score});
         $( p_my_id ).empty();
         $(p_my_id).append(name+': '+score);
@@ -144,6 +159,7 @@ if(world[pacman.x+1][pacman.y] == 1 || world[pacman.x+1][pacman.y] == 2 ) {
     socket.emit('pacman', {x: pacman.x,y: pacman.y});
     $( "#world" ).empty();
     drawWorld();
+    
 }
 }
 if(e.keyCode == 38){
@@ -156,6 +172,7 @@ $(document).keydown(function(e){
 if(world[pacman.x-1][pacman.y] == 1 || world[pacman.x-1][pacman.y] == 2) {
     if(world[pacman.x-1][pacman.y] == 1) {
         score+=10;
+        sound.eat.play();
         socket.emit('score', {id: my_id, name: name, score:score});
         $( p_my_id ).empty();
         $(p_my_id).append(name+': '+score);
@@ -167,6 +184,7 @@ if(world[pacman.x-1][pacman.y] == 1 || world[pacman.x-1][pacman.y] == 2) {
     socket.emit('pacman', {x: pacman.x,y: pacman.y});
     $( "#world" ).empty();
     drawWorld();
+    
 }
 }
 if(e.keyCode == 37){
@@ -179,6 +197,7 @@ $(document).keydown(function(e){
 if(world[pacman.x][pacman.y-1] == 1 || world[pacman.x][pacman.y-1] == 2) {
     if(world[pacman.x][pacman.y-1] == 1) {
         score+=10;
+        sound.eat.play();
         socket.emit('score', {id: my_id, name: name, score:score});
         $( p_my_id ).empty();
         $(p_my_id).append(name+': '+score);
@@ -197,6 +216,7 @@ if(world[pacman.x][pacman.y-1] == 1 || world[pacman.x][pacman.y-1] == 2) {
     socket.emit('pacman', {x: pacman.x,y: pacman.y});
     $( "#world" ).empty();
     drawWorld();
+
 }
 }
 if(e.keyCode == 39){
@@ -209,6 +229,7 @@ $(document).keydown(function(e){
 if(world[pacman.x][pacman.y+1] == 1 || world[pacman.x][pacman.y+1] == 2) {
     if(world[pacman.x][pacman.y+1] == 1) {
         score+=10;
+        sound.eat.play();
         socket.emit('score', {id: my_id, name: name, score:score});
         $( p_my_id ).empty();
         $(p_my_id).append(name+': '+score);
@@ -229,7 +250,8 @@ if(world[pacman.x][pacman.y+1] == 1 || world[pacman.x][pacman.y+1] == 2) {
     $( "#world" ).empty();
     drawWorld();
 }               
-}           
+} 
+
 });
 socket.on('other_players',function (data){
     other_pacmans = {x: data.x, y: data.y};

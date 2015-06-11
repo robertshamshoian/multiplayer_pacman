@@ -2,6 +2,8 @@
 body{
 		margin: 0px;
 		padding: 0px;
+		background-color: black;
+		height: 400px;
 	}
 
 h3{
@@ -34,6 +36,8 @@ h4{
 	word-wrap: break-word;
 	overflow:auto;
 	padding: 5px;
+	color: white;
+	border: 1px solid white;
 }
 
 form{
@@ -63,19 +67,21 @@ input{
 
 }
 .wall{
-	border: 1px solid blue;
+	border: 1px solid yellow;
 	display: inline-block;
 	background-color: blue;
-	width: 18px;
-	height: 18px;
+	margin: 1px;
+	width: 16px;
+	height: 16px;
 	padding: 0px;
 	margin: 0px;
 	position: absolute;
+	border-radius: 5px;
 }
 .dot{
 	width: 20px;
 	height: 20px;
-	background-image: url("./images/dot.jpg");
+	background-image: url("./images/coin.jpg");
 	background-size: 5px 5px;
 	background-repeat: no-repeat;
 	background-position: center;
